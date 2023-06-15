@@ -10,9 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_15_165844) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_15_175209) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "package_products", force: :cascade do |t|
+    t.integer "quantity", default: 1
+    t.bigint "product_id", null: false
+    t.bigint "package_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["package_id"], name: "index_package_products_on_package_id"
+    t.index ["product_id"], name: "index_package_products_on_product_id"
+  end
 
   create_table "packages", force: :cascade do |t|
     t.string "name", null: false
@@ -22,16 +32,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_165844) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "product_reservations", force: :cascade do |t|
-    t.bigint "reservation_id", null: false
-    t.bigint "product_id", null: false
-    t.integer "quantity", default: 1
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_product_reservations_on_product_id"
-    t.index ["reservation_id"], name: "index_product_reservations_on_reservation_id"
-  end
-
   create_table "products", force: :cascade do |t|
     t.string "name", null: false
     t.text "description"
@@ -39,26 +39,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_15_165844) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "reservations", force: :cascade do |t|
-    t.date "date", null: false
-    t.time "start_time", null: false
-    t.time "end_time", null: false
-    t.bigint "user_id", null: false
-    t.bigint "package_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["package_id"], name: "index_reservations_on_package_id"
-    t.index ["user_id"], name: "index_reservations_on_user_id"
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "full_name", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_foreign_key "product_reservations", "products"
-  add_foreign_key "product_reservations", "reservations"
-  add_foreign_key "reservations", "packages"
-  add_foreign_key "reservations", "users"
+  add_foreign_key "package_products", "packages"
+  add_foreign_key "package_products", "products"
 end

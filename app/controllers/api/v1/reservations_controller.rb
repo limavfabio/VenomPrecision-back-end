@@ -17,7 +17,8 @@ class Api::V1::ReservationsController < ApplicationController
   def create
     @reservation = Reservation.new(reservation_params)
 
-    if @reservation.save
+    if @reservation.valid? && validate_required_params_present?
+      @reservation.save
       render json: { status: 'success', message: 'Package reserved successfully',
                      details: details_reservation(@reservation) }, status: :created
     else
@@ -57,12 +58,11 @@ class Api::V1::ReservationsController < ApplicationController
 
   # Json to return as details to user
   def details_reservation(reservation)
-    { id: reservation.id,
-      date: reservation.date.to_s,
+    { date: reservation.date.to_s,
       start_time: reservation.start_time.strftime('%H:%M'),
       end_time: reservation.end_time.strftime('%H:%M'),
-      user_id: reservation.user_id,
-      package_id: reservation.package_id,
+      user_name: reservation.user.name,
+      package_name: reservation.package.name,
       created_at: reservation.created_at,
       updated_at: reservation.updated_at }
   end
@@ -71,5 +71,17 @@ class Api::V1::ReservationsController < ApplicationController
   def missing_params
     required_params = %i[date start_time end_time user_id package_id]
     required_params.reject { |param| params.key?(param) }
+  end
+
+  # Validate if there is an empty value
+  def validate_required_params_present?
+    required_params = %i[date start_time end_time user_id package_id]
+    missing_params = required_params.reject { |param| params[param].present? }
+
+    missing_params.each do |param|
+      @reservation.errors.add(param, "can't be blank")
+    end
+
+    missing_params.empty?
   end
 end

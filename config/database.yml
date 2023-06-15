@@ -25,6 +25,7 @@ development:
   <<: *default
   database: venom_precision_development
   username: postgres
+  password: 1215ehc
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -60,6 +61,7 @@ test:
   <<: *default
   database: venom_precision_test
   username: postgres
+  password: 1215ehc
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is

@@ -1,5 +1,5 @@
 class Api::V1::PackagesController < ApplicationController
-  before_action :set_package, only: %i[ show update destroy ]
+  before_action :set_package, only: %i[show update destroy]
 
   # GET /packages
   def index
@@ -27,7 +27,7 @@ class Api::V1::PackagesController < ApplicationController
   # PATCH/PUT /packages/1
   def update
     if @package.update(package_params)
-      render json: { message: "Updated succesfully" }
+      render json: { message: 'Updated succesfully' }
     else
       render json: @package.errors, status: :unprocessable_entity
     end
@@ -37,20 +37,21 @@ class Api::V1::PackagesController < ApplicationController
   def destroy
     @package.destroy
     if @package.destroy
-      render json: { message: "Destroyed succesfully" }
+      render json: { message: 'Destroyed succesfully' }
     else
       render json: @package.errors, status: :unprocessable_entity
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_package
-      @package = Package.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def package_params
-      params.require(:package).permit(:name, :description, :image)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_package
+    @package = Package.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def package_params
+    params.require(:package).permit(:name, :description, :image)
+  end
 end

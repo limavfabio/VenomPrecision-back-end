@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  resources :reservations
-  resources :users
-  resources :package_products
+ 
   
   namespace :api do
     namespace :v1 do
@@ -9,7 +7,9 @@ Rails.application.routes.draw do
       resources :products
 
       resources :users do
-                  end
+        resources :reservations
+        #resources :package_products
+      end
       
     end
   end

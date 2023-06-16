@@ -17,11 +17,17 @@ class Api::V1::ProductsController < ApplicationController
   def create
     @product = Product.new(product_params)
 
-    if @product.save
-      render json: @product, status: :created, location: api_v1_products_path
+    if @product.valid? && validate_required_params_present?
+      @product.save
+      render json: { status: 'success', message: 'Product created successfully',
+                     details: details_product(@product) }, status: :created
     else
-      render json: @product.errors, status: :unprocessable_entity
+      render json: { status: 'error', message: 'There was an error to create the product', missing_params:,
+                     errors: @product.errors.full_messages }, status: :unprocessable_entity
     end
+  rescue ActiveRecord::NotNullViolation => e
+    render json: { status: 'error', message: 'There are missings fields', missing_params:, errors: [e.message] },
+           status: :unprocessable_entity
   end
 
   # PATCH/PUT /products/1
@@ -47,6 +53,31 @@ class Api::V1::ProductsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def product_params
-    params.require(:product).permit(:name, :description)
+    params.require(:product).permit(:name, :description, :image, :price, :owner_id)
+  end
+
+  # Validate if there are missing params
+  def missing_params
+    required_params = %i[name description image price owner_id]
+    required_params.reject { |param| params.key?(param) }
+  end
+
+  def validate_required_params_present?
+    required_params = %i[name description image price owner_id]
+    missing_params = required_params.reject { |param| params[param].present? }
+
+    missing_params.each do |param|
+      @product.errors.add(param, "can't be blank")
+    end
+
+    missing_params.empty?
+  end
+
+  # Json to return as details to user
+  def details_product(product)
+    { name: product.name.capitalize,
+      description: product.description,
+      image: product.image,
+      price: product.price }
   end
 end

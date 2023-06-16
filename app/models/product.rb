@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
-  validates :name, presence: true
+  validates :name, :image, :price, presence: true
+  validates :price, numericality: { only_float: true, greater_than_or_equal_to: 0 }
 
-  has_many :package_products, dependent: :destroy
-  has_many :packages, through: :package_products
+  belongs_to :owner, class_name: 'User'
+  has_many :reservations
 end

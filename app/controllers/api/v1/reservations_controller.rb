@@ -26,7 +26,7 @@ class Api::V1::ReservationsController < ApplicationController
                      errors: @reservation.errors.full_messages }, status: :unprocessable_entity
     end
   rescue ActiveRecord::NotNullViolation => e
-    render json: { status: 'error', message: 'Faltan campos obligatorios', missing_params:, errors: [e.message] },
+    render json: { status: 'error', message: 'There are missings fields', missing_params:, errors: [e.message] },
            status: :unprocessable_entity
   end
 

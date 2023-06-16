@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
-  validates :name, presence: true
+  validates :name, :description, presence: true
 
-  has_many :package_products, dependent: :destroy
-  has_many :packages, through: :package_products
+  belongs_to :owner, class_name: 'User'
+  has_many :reservations
 end

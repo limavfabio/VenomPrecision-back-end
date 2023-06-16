@@ -53,29 +53,26 @@ class Api::V1::ReservationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def reservation_params
-    params.require(:reservation).permit(:date, :start_time, :end_time, :user_id, :package_id)
+    params.require(:reservation).permit(:date, :user_id, :product_id)
   end
 
   # Json to return as details to user
   def details_reservation(reservation)
     { date: reservation.date.to_s,
-      start_time: reservation.start_time.strftime('%H:%M'),
-      end_time: reservation.end_time.strftime('%H:%M'),
-      user_name: reservation.user.name,
-      package_name: reservation.package.name,
-      created_at: reservation.created_at,
-      updated_at: reservation.updated_at }
+      user_name: reservation.user.username,
+      product_name: reservation.product.name,
+      reserver_at: reservation.created_at }
   end
 
   # Validate if there are missing params
   def missing_params
-    required_params = %i[date start_time end_time user_id package_id]
+    required_params = %i[date user_id product_id]
     required_params.reject { |param| params.key?(param) }
   end
 
   # Validate if there is an empty value
   def validate_required_params_present?
-    required_params = %i[date start_time end_time user_id package_id]
+    required_params = %i[date user_id product_id]
     missing_params = required_params.reject { |param| params[param].present? }
 
     missing_params.each do |param|

@@ -64,7 +64,7 @@ class Api::V1::ProductsController < ApplicationController
 
   def validate_required_params_present?
     required_params = %i[name description image price owner_id]
-    missing_params = required_params.reject { |param| params[param].present? }
+    missing_params = required_params.reject { |param| params[:product][param].present? }
 
     missing_params.each do |param|
       @product.errors.add(param, "can't be blank")

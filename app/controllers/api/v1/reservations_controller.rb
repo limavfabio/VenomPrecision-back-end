@@ -73,7 +73,7 @@ class Api::V1::ReservationsController < ApplicationController
   # Validate if there is an empty value
   def validate_required_params_present?
     required_params = %i[date user_id product_id]
-    missing_params = required_params.reject { |param| params[param].present? }
+    missing_params = required_params.reject { |param| params[:reservation][param].present? }
 
     missing_params.each do |param|
       @reservation.errors.add(param, "can't be blank")

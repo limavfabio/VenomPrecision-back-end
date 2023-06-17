@@ -58,6 +58,9 @@ RSpec.describe 'Products', type: :request do
 
   describe 'PUT api/v1/products' do
     it 'return http success' do
+      put api_v1_product_path(@product1.id), params: {product: {
+        name: "Tippmann Cronus Paintball Gun"}
+      }
       json_response = JSON.parse(response.body)
       expect(response).to have_http_status(:success)
       expect(json_response["name"]).to eq("Tippmann Cronus Paintball Gun")

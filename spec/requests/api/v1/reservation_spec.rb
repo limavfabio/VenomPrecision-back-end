@@ -49,9 +49,8 @@ RSpec.describe 'Products', type: :request do
         user_id: @user1.id,
         }
       }
-      puts @product1.inspect
       json_response = JSON.parse(response.body)
-      puts json_response
+
       expect(response).to have_http_status(:created)
       expect(json_response["details"]["date"]).to eq("2024-12-12")
     end

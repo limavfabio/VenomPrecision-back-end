@@ -16,7 +16,7 @@ RSpec.describe 'Users', type: :request do
       json_response = JSON.parse(response.body)
       found_value = false
       json_response.each do |user|
-        if user["username"] == "user1"
+        if user['username'] == 'user1'
           found_value = true
           break
         end
@@ -34,28 +34,27 @@ RSpec.describe 'Users', type: :request do
     it 'returns the value in the JSON response' do
       get api_v1_user_path(@user1.id)
       json_response = JSON.parse(response.body)
-      found_value = false
-      expect(json_response["username"]).to eq("user1")
+      expect(json_response['username']).to eq('user1')
     end
   end
 
   describe 'POST api/v1/users' do
     it 'return http success' do
-      post "/api/v1/users", params: {user: { username: "user2" } }
+      post '/api/v1/users', params: { user: { username: 'user2' } }
       json_response = JSON.parse(response.body)
       expect(response).to have_http_status(:created)
-      expect(json_response["username"]).to eq("user2")
+      expect(json_response['username']).to eq('user2')
     end
   end
 
   describe 'PUT api/v1/users' do
     it 'return http success' do
-      put api_v1_user_path(@user1.id), params: {user: {
-        username: "Superman"}
-      }
+      put api_v1_user_path(@user1.id), params: { user: {
+        username: 'Superman'
+      } }
       json_response = JSON.parse(response.body)
       expect(response).to have_http_status(:success)
-      expect(json_response["username"]).to eq("Superman")
+      expect(json_response['username']).to eq('Superman')
     end
   end
 

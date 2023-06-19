@@ -85,6 +85,4 @@ test:
 #
 production:
   <<: *default
-  database: venom_precision_production
-  username: VenomPrecision_back_end
-  password: <%= ENV["VENOMPRECISION_BACK_END_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>

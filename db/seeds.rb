@@ -7,7 +7,7 @@ product1 = Product.create(name: 'MP5', description: 'Short range weapon', price:
 product2 = Product.create(name: 'AMW', description: 'Long range sniper', price: 380.4, image: 'https://5.imimg.com/data5/LM/BJ/SF/SELLER-35805553/pubg-sniper-rifle-awm-gun-500x500.jpg', owner: user2)
 product3 = Product.create(name: 'War Helmet', description: 'Adds extra protection for head', price: 430, image: 'https://i.pinimg.com/736x/bb/e6/37/bbe6374b29f0a0d18d5e5072cd6667e4.jpg', owner: user3)
 product4 = Product.create(name: 'Grenade', description: 'Short area explosive grenade', price: 10, image: 'https://th.bing.com/th/id/R.2998edb8865e8cb6d91d190ae46362f1?rik=O3XKfVNBghU%2bUw&pid=ImgRaw&r=0', owner: user4)
-product5 = Product.create(name: 'M4A1', description: 'Long range weapon', price: 100, image: '1.jpg', owner: user1)
+product5 = Product.create(name: 'M4A1', description: 'Long range weapon', price: 100, image: 'https://static3.tcdn.com.br/img/img_prod/492599/rifle_airgun_m4a1_ris_sp_polimero_spring_mola_6mm_qgk_41275_1_fff18b9d1ced01c39d47f41c2d9f616d.jpg', owner: user1)
 product6 = Product.create(name: 'CSGO Mansion', description: 'Popular video game Counter Strike map replica', price: 222.6, image: 'https://www.fortknoxpaintball.com/uploads/1/2/9/9/129989404/fort-knox-map-2020_orig.jpg', owner: user1)
 product7 = Product.create(name: 'Desert', description: 'Big desert full of obstacles and places to take cover', price: 75, image: 'https://www.thebadlandz.com/wp-content/uploads/2019/07/map.jpg', owner: user2)
 product8 = Product.create(name: 'Haunted District', description: 'An empty mini city with old cars, houses and stores', price: 65, image: 'https://2riverroadinn.com/wp-content/uploads/2020/02/map-new.jpg', owner: user1)

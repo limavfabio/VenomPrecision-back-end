@@ -4,8 +4,9 @@ class Api::V1::ReservationsController < ApplicationController
   # GET /reservations
   def index
     @reservations = Reservation.where(user_id: params[:user_id])
+    details = @reservations.map { |reservation| details_reservation(reservation) }
 
-    render json: @reservations
+    render json: { status: 'success', reservations: details }
   end
 
   # GET /reservations/1
@@ -19,10 +20,10 @@ class Api::V1::ReservationsController < ApplicationController
 
     if @reservation.valid? && validate_required_params_present?
       @reservation.save
-      render json: { status: 'success', message: 'Package reserved successfully',
+      render json: { status: 'success', message: 'Product reserved successfully',
                      details: details_reservation(@reservation) }, status: :created
     else
-      render json: { status: 'error', message: 'There was an error to reserve the package', missing_params:,
+      render json: { status: 'error', message: 'There was an error to reserve the product', missing_params:,
                      errors: @reservation.errors.full_messages }, status: :unprocessable_entity
     end
   rescue ActiveRecord::NotNullViolation => e
@@ -53,26 +54,27 @@ class Api::V1::ReservationsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def reservation_params
-    params.require(:reservation).permit(:date, :user_id, :product_id)
+    params.require(:reservation).permit(:date, :city, :user_id, :product_id)
   end
 
   # Json to return as details to user
   def details_reservation(reservation)
     { date: reservation.date.to_s,
       user_name: reservation.user.username,
+      city: reservation.city,
       product_name: reservation.product.name,
       reserver_at: reservation.created_at }
   end
 
   # Validate if there are missing params
   def missing_params
-    required_params = %i[date user_id product_id]
+    required_params = %i[date city user_id product_id]
     required_params.reject { |param| params.key?(param) }
   end
 
   # Validate if there is an empty value
   def validate_required_params_present?
-    required_params = %i[date user_id product_id]
+    required_params = %i[date city user_id product_id]
     missing_params = required_params.reject { |param| params[:reservation][param].present? }
 
     missing_params.each do |param|

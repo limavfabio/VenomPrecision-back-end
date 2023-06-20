@@ -4,8 +4,9 @@ class Api::V1::ProductsController < ApplicationController
   # GET /products
   def index
     @products = Product.all
+    details = @products.map { |product| details_product(product) }
 
-    render json: @products
+    render json: { status: 'success', products: details }
   end
 
   # GET /products/1

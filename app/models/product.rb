@@ -3,5 +3,5 @@ class Product < ApplicationRecord
   validates :price, numericality: { only_float: true, greater_than_or_equal_to: 0 }
 
   belongs_to :owner, class_name: 'User'
-  has_many :reservations
+  has_many :reservations, dependent: :destroy
 end

@@ -42,7 +42,13 @@ class Api::V1::ProductsController < ApplicationController
 
   # DELETE /products/1
   def destroy
-    @product.destroy
+    if params[:user_id] == @product.owner_id
+      @product.destroy
+      render json: { status: 'success', message: 'The product was deleted successfully' }
+    else
+      render json: { status: 'error', message: 'The user who requested to delete is not the owner' },
+             status: :unprocessable_entity
+    end
   end
 
   private
@@ -79,6 +85,7 @@ class Api::V1::ProductsController < ApplicationController
     { id: product.id,
       name: product.name.capitalize,
       description: product.description,
+      owner_id: product.owner_id,
       image: product.image,
       price: product.price }
   end

@@ -13,8 +13,8 @@ product7 = Product.create(name: 'Desert', description: 'Big desert full of obsta
 product8 = Product.create(name: 'Haunted District', description: 'An empty mini city with old cars, houses and stores', price: 65, image: 'https://2riverroadinn.com/wp-content/uploads/2020/02/map-new.jpg', owner: user1)
 product9 = Product.create(name: 'Terminator Paint Ball', description: 'Bullets for Paintball Gun', price: 10, image: 'https://m.media-amazon.com/images/I/61lw9VXCmzL.jpg', owner: user1)
 
-Reservation.create(user: user3, city: 'New York', product: product1, date: '2023-02-02')
-Reservation.create(user: user3, city: 'New York', product: product2, date: '2023-02-02')
-Reservation.create(user: user4, city: 'New York', product: product3, date: '2023-02-02')
-Reservation.create(user: user4, city: 'New York', product: product4, date: '2023-02-02')
-Reservation.create(user: user2, city: 'New York', product: product5, date: '2023-02-02')
+Reservation.create(user_id: user3.id, city: 'New York', product: product1, date: '2023-02-02')
+Reservation.create(user_id: user3.id, city: 'New York', product: product2, date: '2023-02-02')
+Reservation.create(user_id: user4.id, city: 'New York', product: product3, date: '2023-02-02')
+Reservation.create(user_id: user4.id, city: 'New York', product: product4, date: '2023-02-02')
+Reservation.create(user_id: user2.id, city: 'New York', product: product5, date: '2023-02-02')

@@ -82,8 +82,7 @@ class Api::V1::ProductsController < ApplicationController
 
   # Json to return as details to user
   def details_product(product)
-    { 
-      id: product.id,
+    { id: product.id,
       name: product.name.capitalize,
       description: product.description,
       owner_id: product.owner_id,

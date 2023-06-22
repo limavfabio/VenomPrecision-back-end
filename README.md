@@ -8,6 +8,7 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+    - [Live Demo](#live-demo)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -15,6 +16,7 @@
   - [Usage](#usage)
   - [Run tests](#run-tests)
   - [Frontend](#frontend)
+  - [End-point](#endpoint)
   - [Deployment](#triangular_flag_on_post-deployment)
 - [👥 Authors](#authors)
 - [🔭 Future Features](#future-features)
@@ -27,6 +29,7 @@
 # 📖 VENOM PRECISION BACK-END <a name="about-project"></a>
 
 VENOM PRECISION BACK-END is a Ruby on Rails application to provide endpoints for "VENOM PRECISION FRONT-END". This aplication will return information in JSON format according to requests from front-end application.
+
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
@@ -46,7 +49,13 @@ VENOM PRECISION BACK-END is a Ruby on Rails application to provide endpoints for
 
 ### Key Features <a name="key-features"></a>
 
-- **Data Model**
+- **Api End-Point** => /api/docs
+- **Postgress Db**
+- **Active Records**
+
+### Live Demo <a name="live-demo"></a>
+
+> - [Venom Precision Backend](https://venom-precision.onrender.com/products)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -120,8 +129,13 @@ rails db:migrate RAILS_ENV=test
 
 You can find the frontend application [here](https://github.com/limavfabio/VenomPrecision-front-end)
 
+### Endpoint
+
+You can find all endpoints documentation on [here](https://venom-precision.onrender.com/api-docs)
+
 ### Deployment
-To deploy this application you can use Github pages, Netlify, Railway or similar.
+
+To deploy this application you can use Heroku, Render or similar.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -131,21 +145,25 @@ To deploy this application you can use Github pages, Netlify, Railway or similar
 
 - GitHub: [@anderCM](https://github.com/anderCM)
 - LinkedIn: [/andersoncanales](https://www.linkedin.com/in/andersoncanales/)
+- Portfolio: [https://anderson-cm-portfolio.netlify.app/](https://anderson-cm-portfolio.netlify.app/)
 
 👤 **Marcelo Alarcon**
 
 - GitHub: [@chelobotix](https://github.com/chelobotix)
 - LinkedIn: [/marceloalarconb](https://www.linkedin.com/in/marceloalarconb/)
+- Portfolio: [https://chelobotix.github.io/Portafolio-Website/](https://chelobotix.github.io/Portafolio-Website/)
 
 👤 **Jakaria Jishan**
 
 - GitHub: [@JakariaJishan](https://github.com/JakariaJishan)
 - LinkedIn: [/jakaria-jishan](https://www.linkedin.com/in/jakaria-jishan/)
+- Portfolio: [https://jakariajishan.github.io/portfolio-microverse/](https://jakariajishan.github.io/portfolio-microverse/)
 
 👤 **Fábio Lima**
 
 - GitHub: [@limavfabio](https://github.com/limavfabio)
 - LinkedIn: [/fábio-lima-a28b16182](https://www.linkedin.com/in/f%C3%A1bio-lima-a28b16182/)
+- Portfolio: [https://www.linkedin.com/in/f%C3%A1bio-lima-a28b16182/](https://www.linkedin.com/in/f%C3%A1bio-lima-a28b16182/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -172,6 +190,7 @@ If you like this project please give it a star 😁🌟✨
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
+
 Thanks to Microverse for providing us with the right material to aid this project development
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

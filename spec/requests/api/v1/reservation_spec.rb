@@ -2,10 +2,11 @@ require 'rails_helper'
 
 RSpec.describe 'Products', type: :request do
   before(:all) do
-    @user1 = User.create(username: 'user1')
+    User.create(username: 'Jim')
+    @user1 = User.find_by(username: 'Jim')
     @product1 = Product.create(name: 'HK Army SABR Paintball Gun', description: 'description1', price: 144.5,
                                image: 'https://images/1.jpg', owner: @user1)
-    @reservation1 = Reservation.create(date: '2023-02-02', product: @product1, user: @user1)
+    @reservation1 = Reservation.create(date: '2023-02-02', product: @product1, city: 'New York', user: @user1)
   end
   describe 'GET api/v1/users/reservations' do
     it 'return http success' do
@@ -17,7 +18,7 @@ RSpec.describe 'Products', type: :request do
       get api_v1_user_reservations_path(@user1.id)
       json_response = JSON.parse(response.body)
       found_value = false
-      json_response.each do |reservation|
+      json_response['reservations'].each do |reservation|
         if reservation['date'] == '2023-02-02'
           found_value = true
           break
@@ -44,6 +45,7 @@ RSpec.describe 'Products', type: :request do
     it 'return http success' do
       post api_v1_user_reservations_path(@user1.id), params: { reservation: {
         date: '2024-12-12',
+        city: 'New York',
         product_id: @product1.id,
         user_id: @user1.id
       } }

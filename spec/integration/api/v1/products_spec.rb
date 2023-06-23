@@ -1,6 +1,6 @@
 require 'swagger_helper'
 
-RSpec.describe 'api/v1/products', type: :request do
+RSpec.describe 'api/v1/products', :rswag_test do
   path '/api/v1/products' do
     get('list products') do
       response(200, 'successful') do

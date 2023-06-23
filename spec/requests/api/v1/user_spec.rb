@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Users', type: :request do
   before(:all) do
-    @user1 = User.create(username: 'user1')
+    User.create(username: 'Jim')
+    @user1 = User.find_by(username: 'Jim')
   end
 
   describe 'GET api/v1/users' do
@@ -16,7 +17,7 @@ RSpec.describe 'Users', type: :request do
       json_response = JSON.parse(response.body)
       found_value = false
       json_response.each do |user|
-        if user['username'] == 'user1'
+        if user['username'] == 'Jim'
           found_value = true
           break
         end
@@ -34,7 +35,7 @@ RSpec.describe 'Users', type: :request do
     it 'returns the value in the JSON response' do
       get api_v1_user_path(@user1.id)
       json_response = JSON.parse(response.body)
-      expect(json_response['username']).to eq('user1')
+      expect(json_response['username']).to eq('Jim')
     end
   end
 

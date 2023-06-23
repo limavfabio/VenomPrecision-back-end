@@ -23,7 +23,7 @@ default: &default
 
 development:
   <<: *default
-  database: venom_precision_test
+  database: venom_precision_development
   username: postgres
   password: 1215ehc
 

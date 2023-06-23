@@ -42,7 +42,8 @@ class Api::V1::ProductsController < ApplicationController
 
   # DELETE /products/1
   def destroy
-    if params[:user_id] == @product.owner_id
+    @product = Product.find(params[:id])
+    if params[:user_id].to_i == @product.owner_id
       @product.destroy
       render json: { status: 'success', message: 'The product was deleted successfully' }
     else

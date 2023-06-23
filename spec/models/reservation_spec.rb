@@ -24,7 +24,7 @@ RSpec.describe Reservation, type: :model do
     user = User.create(username: 'andercm')
     product = Product.create(name: 'Gun 1', image: 'https://urlpicture.com', price: 27.20, owner: user)
 
-    reservation = Reservation.create(date: '2023-06-16', user:, product:)
+    reservation = Reservation.create(date: '2023-06-16', city: 'New York', user:, product:)
 
     expect(reservation.persisted?).to eq(true)
   end

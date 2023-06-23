@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe 'Products', type: :request do
   before(:all) do
-    @user1 = User.create(username: 'user1')
+    User.create(username: 'Jim')
+    @user1 = User.find_by(username: 'Jim')
     @product1 = Product.create(name: 'HK Army SABR Paintball Gun', description: 'description1', price: 144.5,
                                image: 'https://images/1.jpg', owner: @user1)
   end
@@ -16,8 +17,8 @@ RSpec.describe 'Products', type: :request do
       get api_v1_products_path
       json_response = JSON.parse(response.body)
       found_value = false
-      json_response.each do |product|
-        if product['name'] == 'HK Army SABR Paintball Gun'
+      json_response['products'].each do |product|
+        if product['name'] == 'Hk army sabr paintball gun'
           found_value = true
           break
         end
@@ -68,7 +69,7 @@ RSpec.describe 'Products', type: :request do
 
   describe 'DESTROY api/v1/products' do
     it 'return http success' do
-      delete api_v1_product_path(@product1.id)
+      delete api_v1_product_path(id: @product1.id, user_id: @user1.id)
       expect(response).to have_http_status(:success)
     end
   end

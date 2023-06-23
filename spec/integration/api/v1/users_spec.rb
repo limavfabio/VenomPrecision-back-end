@@ -1,6 +1,6 @@
 require 'swagger_helper'
 
-RSpec.describe 'api/v1/users', type: :request do
+RSpec.describe 'api/v1/users', :rswag_test do
   path '/api/v1/users' do
     get('list users') do
       response(200, 'successful') do

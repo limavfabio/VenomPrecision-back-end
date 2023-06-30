@@ -1,5 +1,5 @@
 class Api::V1::ProductsController < ApplicationController
-  before_action :set_product, only: %i[show update destroy]
+  before_action :set_product, only: %i[show update]
 
   # GET /products
   def index
